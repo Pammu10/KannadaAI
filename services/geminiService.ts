@@ -1,7 +1,15 @@
 import { GoogleGenAI, Type, Schema, Modality } from "@google/genai";
 import { UserLevel, LessonContent, Word } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Support both standard process.env (Node/Webpack) and import.meta.env (Vite)
+// In Vercel, set your environment variable as VITE_API_KEY
+const apiKey = (import.meta as any).env?.VITE_API_KEY || process.env.API_KEY;
+
+if (!apiKey) {
+  console.warn("Missing API_KEY or VITE_API_KEY. AI features will not work.");
+}
+
+const ai = new GoogleGenAI({ apiKey: apiKey || "" });
 
 // --- Audio State Management ---
 let currentAudioContext: AudioContext | null = null;
