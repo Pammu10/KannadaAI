@@ -1,0 +1,7 @@
+{
+  "name": "Kannada.ai",
+  "description": "A mobile-first AI tutor for learning Kannada through adaptive conversational lessons and a dynamic word bank.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
